@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>fileManagement</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>TreeServlet</display-name>
+    <servlet-name>TreeServlet</servlet-name>
+    <servlet-class>com.yfl.web.servlet.TreeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TreeServlet</servlet-name>
+    <url-pattern>/TreeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TreeChildrenServlet</display-name>
+    <servlet-name>TreeChildrenServlet</servlet-name>
+    <servlet-class>com.yfl.web.servlet.TreeChildrenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TreeChildrenServlet</servlet-name>
+    <url-pattern>/TreeChildrenServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DelFolderServlet</display-name>
+    <servlet-name>DelFolderServlet</servlet-name>
+    <servlet-class>com.yfl.web.servlet.DelFolderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DelFolderServlet</servlet-name>
+    <url-pattern>/DelFolderServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AppendNodeServlet</display-name>
+    <servlet-name>AppendNodeServlet</servlet-name>
+    <servlet-class>com.yfl.web.servlet.AppendNodeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AppendNodeServlet</servlet-name>
+    <url-pattern>/AppendNodeServlet</url-pattern>
+  </servlet-mapping>
+</web-app>
