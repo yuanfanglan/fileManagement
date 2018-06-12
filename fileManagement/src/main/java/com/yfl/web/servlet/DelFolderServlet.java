@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.yfl.common.util.FileUtil;
 import com.yfl.pojo.MeunTree;
-import com.yfl.util.FileUtil;
 
 
 /**  
@@ -36,7 +36,7 @@ public class DelFolderServlet extends HttpServlet {
 		//接受前台传来的需要删除的数组对象
 		String files = request.getParameter("files");
 		boolean flag=false;
-		if (files!=null||files!="") {
+		if (files!=null&&files!="") {
 			Gson gson=new Gson();
 			//把string类型的对象转换为对象类型
 			MeunTree meunTree = gson.fromJson(files, MeunTree.class);

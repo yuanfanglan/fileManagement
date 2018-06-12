@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
+import com.yfl.common.util.MyTreeUtil;
 import com.yfl.pojo.MeunTree;
-import com.yfl.util.MyTreeUtil;
 
 /**
  * 分层加载树

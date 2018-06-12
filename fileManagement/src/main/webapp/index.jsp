@@ -29,8 +29,8 @@
 	
 	<!-- 节点右键菜单 -->
 	<div id="mm" class="easyui-menu" style="width:120px;">
-		<div onclick="append()" data-options="iconCls:'icon-add'">添加文件</div>
-		<div onclick="append2()" data-options="iconCls:'icon-add'">添加文件夹</div>
+		<div onclick="appendFile()" data-options="iconCls:'icon-add'">添加文件</div>
+		<div onclick="appendFolder()" data-options="iconCls:'icon-add'">添加文件夹</div>
 		<div onclick="removeit()" data-options="iconCls:'icon-remove'">删除</div>
 		<div class="menu-sep"></div>
 	</div>
