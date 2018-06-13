@@ -44,4 +44,25 @@
     <servlet-name>AppendNodeServlet</servlet-name>
     <url-pattern>/AppendNodeServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AppendFolderServlet</display-name>
+    <servlet-name>AppendFolderServlet</servlet-name>
+    <servlet-class>com.yfl.web.servlet.AppendFolderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AppendFolderServlet</servlet-name>
+    <url-pattern>/AppendFolderServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RenameFileServlet</display-name>
+    <servlet-name>RenameFileServlet</servlet-name>
+    <servlet-class>com.yfl.web.servlet.RenameFileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RenameFileServlet</servlet-name>
+    <url-pattern>/RenameFileServlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

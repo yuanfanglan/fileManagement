@@ -35,6 +35,7 @@
 		<div class="menu-sep"></div>
 	</div>
 	<!-- <input type="button" onclick="getChecked();" value="是否删除文件夹"> -->
+	 <input type="button" onclick="home()" value="本地地址"> 
 </body>
 
 </html>

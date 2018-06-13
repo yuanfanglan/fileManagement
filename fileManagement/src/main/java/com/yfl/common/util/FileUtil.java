@@ -53,7 +53,7 @@ public class FileUtil {
 				if (file.isDirectory()) {
 					delFiles(file.getAbsolutePath(), isDeleateDir);// 递归
 				} else {
-					System.out.println("文件【" + file + "】删除结果：" + file.delete());
+					 file.delete();
 				}
 			}
 			if (isDeleateDir) {
@@ -84,7 +84,7 @@ public class FileUtil {
 			String[] strings = newName.split("\\\\");
 			String text = strings[strings.length - 1];
 			meunTree2.setText(text);
-			meunTree2.setPid(pid);
+			meunTree2.getAttributes().put("pid", pid);
 			return meunTree2;
 		} else {
 			return null;
@@ -122,7 +122,7 @@ public class FileUtil {
 			String[] strings = newName.split("\\\\");
 			String text = strings[strings.length - 1];
 			meunTree2.setText(text);
-			meunTree2.setPid(pid);
+			meunTree2.getAttributes().put("pid", pid);
 			meunTree2.setState("closed");
 			return meunTree2;
 		} else {

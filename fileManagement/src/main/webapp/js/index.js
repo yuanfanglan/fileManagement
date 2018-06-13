@@ -1,5 +1,8 @@
-//创建树
+
 $(function() {
+	//编辑之前的节点
+	var onBeforeEditNode;
+	//创建树
 	$("#tt").tree({
 		url : 'TreeServlet',
 		lines : true,
@@ -13,11 +16,42 @@ $(function() {
 				top : e.pageY
 			});
 		},
-	    //编辑节点
+	    //双击编辑节点
 		onDblClick: function(node){
 			$(this).tree('beginEdit',node.target);
+		},
+		
+		//编辑节点事件之前获取原节点
+		onBeforeEdit:function(node){
+			onBeforeEditNode=node;
+			console.log(node);
+		},
+		//编辑节点之后进行操作
+		onAfterEdit: function(node){
+			//如果节点没有修改则不需要操作
+			if(onBeforeEditNode.text==node.text){
+				return false;
+			}
+			//如果修改了，则调用ajax把本的文件名也改了
+			$.ajax({
+		        type: "post",
+		        dataType: "json",
+		        url: 'RenameFileServlet',
+		        data: {"node":JSON.stringify(node)},
+		        success: function (data) {
+		        	if(data!=null&&data!=""){
+		        			alert("修改文件名成功");
+		        			//暂时未完善，直接重新加载树。。。。。。
+		        			$('#tt').tree('reload');
+		        		
+		        	}else{
+	        			alert("修改失败，文件夹名已经存在");
+	        			$('#tt').tree('reload');
+	        		}
+		        }
+		    });
 		}
-
+		
 	});
 
 })
@@ -42,7 +76,7 @@ function appendFile() {
         		data : [ {
         			id:data.id,
         			text:data.text,
-        			pid:data.pid
+        			attributes:data.attributes
         		}]
         	});
         	}
@@ -55,15 +89,14 @@ function appendFile() {
 function appendFolder() {
 	var t = $('#tt');
 	var node = t.tree('getSelected');
-	console.log(node);
 	if(node.state==undefined){
 		alert("只有文件夹才能添加文件夹");
 		return false;
 	}else{
 		$.ajax({
-        type: "get",
+        type: "post",
         dataType: "json",
-        url: 'AppendNodeServlet',
+        url: 'AppendFolderServlet',
         data: {"node":JSON.stringify(node)},
         success: function (data) {
         	if(data!=null){
@@ -72,7 +105,7 @@ function appendFolder() {
         		data : [ {
         			id:data.id,
         			text:data.text,
-        			pid:data.pid,
+        			attributes:data.attributes,
         			state:'closed'
         		}]
         	});
@@ -101,7 +134,15 @@ function removeit() {
 	    });
 }
 
-
+function home(){
+	$.ajax({
+        type: "post",
+        url: 'HomeAddressServlet',
+        success: function (data) {
+        	console.log(data);
+        }
+    });
+}
 
 //点击事件获取节点并且删除文件夹
 /*function getChecked(){

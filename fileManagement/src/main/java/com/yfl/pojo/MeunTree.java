@@ -15,11 +15,10 @@ attributes: 被添加到节点的自定义属性。
 public class MeunTree {
 
 	private String id;
-	private String pid;
 	private String text;
 	private String state;
 	private boolean checked;
-	private Map<String, Object> attributes = new HashMap<String, Object>(); // 添加到节点的自定义属性
+	private Map<String, Object> attributes = new HashMap<String, Object>(); // 添加到节点的自定义属性,pid也放在里面
 	
 	public String getId() {
 		return id;
@@ -28,12 +27,6 @@ public class MeunTree {
 		this.id = id;
 	}
 	
-	public String getPid() {
-		return pid;
-	}
-	public void setPid(String pid) {
-		this.pid = pid;
-	}
 	public String getText() {
 		return text;
 	}
@@ -60,7 +53,7 @@ public class MeunTree {
 	}
 	@Override
 	public String toString() {
-		return "MeunTree [id=" + id + ", pid=" + pid + ", text=" + text + ", state=" + state + ", checked=" + checked
+		return "MeunTree [id=" + id + ", text=" + text + ", state=" + state + ", checked=" + checked
 				+ ", attributes=" + attributes + "]";
 	}
 

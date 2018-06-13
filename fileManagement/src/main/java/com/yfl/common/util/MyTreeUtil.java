@@ -20,7 +20,7 @@ public class MyTreeUtil {
 			MeunTree meunTree = new MeunTree();
 			meunTree.setId(files[i].getAbsolutePath());
 			meunTree.setText(files[i].getAbsolutePath());
-			meunTree.setPid(null);
+			meunTree.getAttributes().put("pid", null);
 			meunTree.setState("closed");
 			meunTrees.add(meunTree);
 			}
@@ -42,7 +42,8 @@ public class MyTreeUtil {
 			if (files[i].isDirectory()) {
 				meunTree.setState("closed");
 			}
-			meunTree.setPid(pathname);
+			/*meunTree.setPid(pathname);*/
+			meunTree.getAttributes().put("pid", pathname);
 			meunTree.setId(files[i].getAbsolutePath());
 			// 对路径进行分割，只显示路径最后部分作为名字。
 			String[] strings = files[i].getAbsolutePath().split("\\\\");
