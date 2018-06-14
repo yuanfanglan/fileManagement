@@ -25,8 +25,7 @@
 <body>
 
 	<!-- 创建树 -->
-	<ul id="tt"></ul>
-	
+	<ul id="tt" style="display:block;float:left"></ul>
 	<!-- 节点右键菜单 -->
 	<div id="mm" class="easyui-menu" style="width:120px;">
 		<div onclick="appendFile()" data-options="iconCls:'icon-add'">添加文件</div>
@@ -34,8 +33,15 @@
 		<div onclick="removeit()" data-options="iconCls:'icon-remove'">删除</div>
 		<div class="menu-sep"></div>
 	</div>
+	<!-- 默认树 -->
+	 <ul id="tt2" style="display:block;float:left"></ul>
+	<div id="mm2" class="easyui-menu" style="width:120px;">
+		<div onclick="appendFile2()" data-options="iconCls:'icon-add'">添加文件</div>
+		<div onclick="appendFolder2()" data-options="iconCls:'icon-add'">添加文件夹</div>
+		<div onclick="removeit2()" data-options="iconCls:'icon-remove'">删除</div>
+		<div class="menu-sep"></div>
+	</div> 
 	<!-- <input type="button" onclick="getChecked();" value="是否删除文件夹"> -->
-	 <input type="button" onclick="home()" value="本地地址"> 
 </body>
 
 </html>

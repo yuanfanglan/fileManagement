@@ -3,6 +3,7 @@ package com.yfl.common.util;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.Map;
 
 import com.sun.tools.corba.se.idl.constExpr.Equal;
 import com.yfl.common.constant.FileConstant;
@@ -145,4 +146,6 @@ public class FileUtil {
 			return newID;
 		}
 	}
+	
+	
 }

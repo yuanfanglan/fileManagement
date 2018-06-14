@@ -13,7 +13,7 @@ public class MyFileFilter implements FileFilter {
 	@Override
 	public boolean accept(File file) {
 		//以点开头的隐藏文件进行过滤
-		if (file.getName().startsWith(".")||file.getName().startsWith("$")) {
+		if (file.getName().startsWith(".")||file.getName().startsWith("$")||file.getName().endsWith(".ini")) {
 			return false;
 		}
 		return true;

@@ -10,4 +10,6 @@ public class FileConstant {
 	public static final String NEW_FILE="\\new_item";
 	//新文件夹
 	public static final String NEW_FOLDER="\\新建文件夹";
+	//默认文件路径
+	public static final String DEFAULT_PATH="C:\\Users";
 }

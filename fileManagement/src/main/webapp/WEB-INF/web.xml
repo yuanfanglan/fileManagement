@@ -64,5 +64,24 @@
     <servlet-name>RenameFileServlet</servlet-name>
     <url-pattern>/RenameFileServlet</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>DefaultFolderServlet</display-name>
+    <servlet-name>DefaultFolderServlet</servlet-name>
+    <servlet-class>com.yfl.web.servlet.DefaultFolderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DefaultFolderServlet</servlet-name>
+    <url-pattern>/DefaultFolderServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DefaultTreeServlet</display-name>
+    <servlet-name>DefaultTreeServlet</servlet-name>
+    <servlet-class>com.yfl.web.servlet.DefaultTreeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DefaultTreeServlet</servlet-name>
+    <url-pattern>/DefaultTreeServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

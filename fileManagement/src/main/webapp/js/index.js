@@ -53,6 +53,56 @@ $(function() {
 		}
 		
 	});
+	
+	$("#tt2").tree({
+		url : 'DefaultTreeServlet',
+		lines : true,
+		checkbox : true,
+		//添加右键菜单，添加文件、文件夹和删除
+		onContextMenu : function(e, node) {
+			e.preventDefault();
+			$(this).tree('select', node.target);
+			$('#mm2').menu('show', {
+				left : e.pageX,
+				top : e.pageY
+			});
+		},
+	    //双击编辑节点
+		onDblClick: function(node){
+			$(this).tree('beginEdit',node.target);
+		},
+		
+		//编辑节点事件之前获取原节点
+		onBeforeEdit:function(node){
+			onBeforeEditNode=node;
+			console.log(node);
+		},
+		//编辑节点之后进行操作
+		onAfterEdit: function(node){
+			//如果节点没有修改则不需要操作
+			if(onBeforeEditNode.text==node.text){
+				return false;
+			}
+			//如果修改了，则调用ajax把本的文件名也改了
+			$.ajax({
+		        type: "post",
+		        dataType: "json",
+		        url: 'RenameFileServlet',
+		        data: {"node":JSON.stringify(node)},
+		        success: function (data) {
+		        	if(data!=null&&data!=""){
+		        			alert("修改文件名成功");
+		        			//暂时未完善，直接重新加载树。。。。。。
+		        			$('#tt2').tree('reload');
+		        		
+		        	}else{
+	        			alert("修改失败，文件夹名已经存在");
+	        			$('#tt2').tree('reload');
+	        		}
+		        }
+		    });
+		}
+		})
 
 })
 
@@ -134,15 +184,86 @@ function removeit() {
 	    });
 }
 
-function home(){
-	$.ajax({
+
+
+//默认树添加文件
+function appendFile2() {
+	var t = $('#tt2');
+	var node = t.tree('getSelected');
+	if(node.state==undefined){
+		alert("只有文件夹才能添加文件");
+		return false;
+	}else{
+		$.ajax({
         type: "post",
-        url: 'HomeAddressServlet',
+        dataType: "json",
+        url: 'AppendNodeServlet',
+        data: {"node":JSON.stringify(node)},
         success: function (data) {
-        	console.log(data);
+        	if(data!=null){
+        		t.tree('append', {
+        		parent : (node ? node.target : null),
+        		data : [ {
+        			id:data.id,
+        			text:data.text,
+        			attributes:data.attributes
+        		}]
+        	});
+        	}
         }
     });
+	}
 }
+
+//默认树添加文件夹
+function appendFolder2() {
+	var t = $('#tt2');
+	var node = t.tree('getSelected');
+	if(node.state==undefined){
+		alert("只有文件夹才能添加文件夹");
+		return false;
+	}else{
+		$.ajax({
+        type: "post",
+        dataType: "json",
+        url: 'AppendFolderServlet',
+        data: {"node":JSON.stringify(node)},
+        success: function (data) {
+        	if(data!=null){
+        		t.tree('append', {
+        		parent : (node ? node.target : null),
+        		data : [ {
+        			id:data.id,
+        			text:data.text,
+        			attributes:data.attributes,
+        			state:'closed'
+        		}]
+        	});
+        	}
+        }
+    });
+	}
+}
+
+//默认树删除文件
+function removeit2() {
+	var node = $('#tt2').tree('getSelected');
+	 $.ajax({
+	        type: "post",
+	        dataType: "json",
+	        url: 'DelFolderServlet',
+	        data: {"files":JSON.stringify(node)},
+	        success: function (data) {
+	        	if(data==true){
+	        		alert("删除成功");
+	        		$('#tt').tree('remove', node.target);
+	        	}else{
+	        		alert("删除失败");
+	        	}
+	        }
+	    });
+}
+
 
 //点击事件获取节点并且删除文件夹
 /*function getChecked(){
