@@ -37,9 +37,11 @@ public class TreeServlet extends HttpServlet {
 			} else {
 			//如果传了路径，则查询子节点
 			LinkedList<MeunTree> treeData = MyTreeUtil.treeData(pathname);
-			String json = new Gson().toJson(treeData);
-			response.setCharacterEncoding("UTF-8");  //编码设置，防止乱码
-			response.getWriter().print(json);
+			if (treeData!=null) {
+				String json = new Gson().toJson(treeData);
+				response.setCharacterEncoding("UTF-8");  //编码设置，防止乱码
+				response.getWriter().print(json);
+			}
 		}
 	}
 }

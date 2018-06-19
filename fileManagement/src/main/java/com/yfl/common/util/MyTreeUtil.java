@@ -40,48 +40,55 @@ public class MyTreeUtil {
 			return null;
 		}
 		File[] files = file.listFiles(new MyFileFilter());
-		for (int i = 0; i < files.length; i++) {
-			MeunTree meunTree = new MeunTree();
-			if (files[i].isDirectory()) {
-				meunTree.setState("closed");
+		if (files.length!=0) {
+			for (int i = 0; i < files.length; i++) {
+				MeunTree meunTree = new MeunTree();
+				if (files[i].isDirectory()) {
+					meunTree.setState("closed");
+				}
+				meunTree.getAttributes().put("pid", pathname);
+				meunTree.setId(files[i].getAbsolutePath());
+				// 对路径进行分割，只显示路径最后部分作为名字。
+				String[] strings = files[i].getAbsolutePath().split(FileConstant.SPITDIAGONAL);
+				String text = strings[strings.length - 1];
+				meunTree.setText(text);
+				meunTrees.add(meunTree);
 			}
-			meunTree.getAttributes().put("pid", pathname);
-			meunTree.setId(files[i].getAbsolutePath());
-			// 对路径进行分割，只显示路径最后部分作为名字。
-			String[] strings = files[i].getAbsolutePath().split("\\\\");
-			String text = strings[strings.length - 1];
-			meunTree.setText(text);
-			meunTrees.add(meunTree);
+			return meunTrees;
+		}else {
+			return null;
 		}
-		return meunTrees;
 	}
 
 	// 获取默认文件夹树
 	public static LinkedList<MeunTree> defaultRoots() {
-		// 获取电脑username
-		Map<String, String> map = System.getenv();
-		String username = map.get("USERNAME");
+		// 获取电脑username,windows
+		/*Map<String, String> map = System.getenv();
+		String username = map.get("USERNAME");*/
+		//获取linux下当前登录的用户名
+		String username=GetLinuxUserName.exec();
 		LinkedList<MeunTree> meunTrees = new LinkedList<>();
 		// 默认文件夹的位置
-		String defaultPath = FileConstant.DEFAULT_PATH + "\\" + username;
+		String defaultPath = FileConstant.DEFAULT_PATH + FileConstant.DIAGONAL + username+FileConstant.DIAGONAL;
 		File file = new File(defaultPath);
 		if (file.exists()) {
 			File[] files = file.listFiles(new MyFileFilter());
 			for (int i = 0; i < files.length; i++) {
 				// 定义默认文件夹位置
-				if (files[i].getAbsolutePath().equals(defaultPath + "\\Pictures")
-						|| files[i].getAbsolutePath().equals(defaultPath + "\\Documents")
-						|| files[i].getAbsolutePath().equals(defaultPath + "\\Videos")
-						|| files[i].getAbsolutePath().equals(defaultPath + "\\Music")) {
+				if (files[i].getAbsolutePath().equals(defaultPath+"Pictures")
+						|| files[i].getAbsolutePath().equals(defaultPath +"Documents")
+						|| files[i].getAbsolutePath().equals(defaultPath + "Videos")
+						|| files[i].getAbsolutePath().equals(defaultPath + "Music")) {
 					MeunTree meunTree = new MeunTree();
 					if (files[i].isDirectory()) {
 						meunTree.setState("closed");
 					}
 					meunTree.getAttributes().put("pid", defaultPath);
 					meunTree.setId(files[i].getAbsolutePath());
-					// 对路径进行分割，只显示路径最后部分作为名字。
-					String[] strings = files[i].getAbsolutePath().split("\\\\");
+					// 对路径进行分割，只显示路径最后部分作为名字。spit(////或\\\\)
+					String[] strings = files[i].getAbsolutePath().split(FileConstant.SPITDIAGONAL);
 					String text = strings[strings.length - 1];
+					System.out.println(text);
 					meunTree.setText(text);
 					meunTrees.add(meunTree);
 				}

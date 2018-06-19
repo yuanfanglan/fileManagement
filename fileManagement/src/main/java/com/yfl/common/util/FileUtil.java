@@ -82,7 +82,7 @@ public class FileUtil {
 			file2.createNewFile();
 			// 添加树节点
 			meunTree2.setId(newName);
-			String[] strings = newName.split("\\\\");
+			String[] strings = newName.split(FileConstant.SPITDIAGONAL);
 			String text = strings[strings.length - 1];
 			meunTree2.setText(text);
 			meunTree2.getAttributes().put("pid", pid);
@@ -120,7 +120,7 @@ public class FileUtil {
 			file2.mkdir();
 			// 添加树节点
 			meunTree2.setId(newName);
-			String[] strings = newName.split("\\\\");
+			String[] strings = newName.split(FileConstant.SPITDIAGONAL);
 			String text = strings[strings.length - 1];
 			meunTree2.setText(text);
 			meunTree2.getAttributes().put("pid", pid);
@@ -147,5 +147,9 @@ public class FileUtil {
 		}
 	}
 	
+	public static void main(String[] args) {
+		 String string = System.getProperty("file.separator");
+		 System.out.println(string);
+	}
 	
 }

@@ -23,7 +23,10 @@
 </head>
 
 <body>
-
+    <%
+   String userName=request.getParameter("userName");
+    %>
+    <%=userName %>
 	<!-- 创建树 -->
 	<ul id="tt" style="display:block;float:left"></ul>
 	<!-- 节点右键菜单 -->

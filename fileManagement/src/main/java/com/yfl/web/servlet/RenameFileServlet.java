@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.yfl.common.constant.FileConstant;
 import com.yfl.pojo.MeunTree;
 
 /**  
@@ -38,7 +39,7 @@ public class RenameFileServlet extends HttpServlet {
 			String oldId=meunTree.getId();
 			String pid=(String) meunTree.getAttributes().get("pid");
 			String text=meunTree.getText();
-			String newId=pid+"\\"+text;
+			String newId=pid+FileConstant.DIAGONAL+text;
 			meunTree.setId(newId);
 			//判断新名字是否存在
 			if (new File(newId).exists()) {
