@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-          <%
-				String path = request.getContextPath();
-				String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-				%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,10 +24,6 @@
 </head>
 
 <body>
-    <%
-   String userName=request.getParameter("userName");
-    %>
-    <%=userName %>
 	<!-- 创建树 -->
 	<ul id="tt" style="display:block;float:left"></ul>
 	<!-- 节点右键菜单 -->
@@ -44,7 +41,6 @@
 		<div onclick="removeit2()" data-options="iconCls:'icon-remove'">删除</div>
 		<div class="menu-sep"></div>
 	</div> 
-	<!-- <input type="button" onclick="getChecked();" value="是否删除文件夹"> -->
 </body>
 
 </html>

@@ -66,7 +66,7 @@ public class MyTreeUtil {
 		/*Map<String, String> map = System.getenv();
 		String username = map.get("USERNAME");*/
 		//获取linux下当前登录的用户名
-		String username=GetLinuxUserName.exec();
+		String username=GetLinuxSystemInfo.getUserName();
 		LinkedList<MeunTree> meunTrees = new LinkedList<>();
 		// 默认文件夹的位置
 		String defaultPath = FileConstant.DEFAULT_PATH + FileConstant.DIAGONAL + username+FileConstant.DIAGONAL;

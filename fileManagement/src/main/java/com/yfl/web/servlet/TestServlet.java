@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yfl.common.util.GetLinuxUserName;
+import com.yfl.common.util.GetLinuxSystemInfo;
 
 /**
  * Servlet implementation class TestServlet
@@ -26,7 +26,7 @@ public class TestServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userName = GetLinuxUserName.exec();
+		String userName = GetLinuxSystemInfo.getUserName();
 		request.setAttribute("userName", userName);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}

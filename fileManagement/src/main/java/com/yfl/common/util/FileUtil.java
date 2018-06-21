@@ -11,7 +11,7 @@ import com.yfl.pojo.MeunTree;
 
 /**
  * @author yfl
- * @Description: 此类包含文件一些方法，如剩余空间大小，删除文件夹,文件过滤等
+ * @Description: 此类包含文件一些方法，删除文件夹,文件过滤等
  * @date 2018年6月8日
  */
 public class FileUtil {
@@ -19,25 +19,6 @@ public class FileUtil {
 	private static int theSameFimeNum = 2;
 	// 定义标量判断有几个同名文件夹
 		private static int theSameFolderNum = 2;
-	/**
-	 * @param size
-	 *            传入磁盘字节大小
-	 */
-	public static String formatDataSize(long size) {
-		DecimalFormat formater = new DecimalFormat("####.00");
-		if (size < 1024)
-			return size + "bytes";
-		else if (size < Math.pow(1024, 2))
-			return formater.format(size * Math.pow(1024, -1)) + "KB";
-		else if (size < Math.pow(1024, 3))
-			return formater.format(size * Math.pow(1024, -2)) + "MB";
-		else if (size < Math.pow(1024, 4))
-			return formater.format(size * Math.pow(1024, -3)) + "GB";
-		else if (size < Math.pow(1024, 5))
-			return formater.format(size * Math.pow(1024, -4)) + "TB";
-		else
-			return "有这么大的硬盘吗？";
-	}
 
 	/**
 	 * @param dirPath
