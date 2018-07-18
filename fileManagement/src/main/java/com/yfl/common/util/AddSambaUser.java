@@ -1,5 +1,11 @@
 package com.yfl.common.util;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
+
 /**  
  * @Description:该类为用于添加samba用户所做一些操作的工具类   
  * @author yfl
@@ -15,21 +21,23 @@ public class AddSambaUser {
 	 * */
 	public void addSambaUser(String userName,String password) {
 		try {
-			if (userName!=null&&userName!="") {
-				String[] cmd= new String[2];
-				//添加用户的同时为用户创建家目录
-				cmd[0]="useradd -d /mysamba/user/"+userName+" -m  "+userName;
-				cmd[1]="mkdir -p /mysamba/user/"+userName+"/照片";
-				for(int i=0;i<cmd.length;i++) {
-					String[] cmd2= { "/bin/sh", "-c", cmd[i] };
-					System.out.println(cmd2);
-					Runtime.getRuntime().exec(cmd2);
-				}
+			String[] cmd={"/bin/sh","-c","bash /test.sh "+userName+" "+password+""};	
+			Process process = Runtime.getRuntime().exec(cmd);
+			InputStreamReader isr = new InputStreamReader(process.getInputStream());
+			LineNumberReader reader = new LineNumberReader(isr);
+			String line;
+			process.waitFor();
+			while ((line=reader.readLine())!=null) {
+				System.out.println(line);
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public static void main(String[] args) {
+	   
 	}
 }

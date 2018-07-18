@@ -202,6 +202,12 @@
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
 		</dependency>
+       <!-- RemoteShellExecutor工具类 -->
+		<dependency>
+			<groupId>org.jvnet.hudson</groupId>
+			<artifactId>ganymed-ssh2</artifactId>
+			<version>build210-hudson-1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
