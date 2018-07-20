@@ -9,7 +9,7 @@
 	<!-- 加载配置文件 -->
 	<context:property-placeholder location="classpath:db.properties" />
 	<!-- <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/> -->
-	<!-- 通过注解进行注入service,dao -->
+	<!-- 通过注解进行注入service,dao --> 
 	<context:component-scan base-package="com.yfl.service.*" />
 	<!-- 数据库连接池 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yfl.mapper.HomeuserMapper">
+  <resultMap id="BaseResultMap" type="com.yfl.pojo.Homeuser">
+    <id column="USERNAME" jdbcType="CHAR" property="username" />
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="PASSWORD" jdbcType="CHAR" property="password" />
+    <result column="SERVERNAME" jdbcType="CHAR" property="servername" />
+    <result column="EMAIL" jdbcType="CHAR" property="email" />
+    <result column="WECHAT" jdbcType="CHAR" property="wechat" />
+    <result column="QQ" jdbcType="CHAR" property="qq" />
+    <result column="AGENT" jdbcType="CHAR" property="agent" />
+    <result column="STATUS" jdbcType="CHAR" property="status" />
+    <result column="NOTE" jdbcType="CHAR" property="note" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    USERNAME, ID, PASSWORD, SERVERNAME, EMAIL, WECHAT, QQ, AGENT, STATUS, NOTE
+  </sql>
+  <select id="selectByExample" parameterType="com.yfl.pojo.HomeuserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from homeuser
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from homeuser
+    where USERNAME = #{username,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from homeuser
+    where USERNAME = #{username,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yfl.pojo.HomeuserExample">
+    delete from homeuser
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yfl.pojo.Homeuser">
+    insert into homeuser (USERNAME, ID, PASSWORD, 
+      SERVERNAME, EMAIL, WECHAT, QQ, 
+      AGENT, STATUS, NOTE)
+    values (#{username,jdbcType=CHAR}, #{id,jdbcType=INTEGER}, #{password,jdbcType=CHAR}, 
+      #{servername,jdbcType=CHAR}, #{email,jdbcType=CHAR}, #{wechat,jdbcType=CHAR}, #{qq,jdbcType=CHAR}, 
+      #{agent,jdbcType=CHAR}, #{status,jdbcType=CHAR}, #{note,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yfl.pojo.Homeuser">
+    insert into homeuser
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="servername != null">
+        SERVERNAME,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="wechat != null">
+        WECHAT,
+      </if>
+      <if test="qq != null">
+        QQ,
+      </if>
+      <if test="agent != null">
+        AGENT,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="servername != null">
+        #{servername,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=CHAR},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=CHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=CHAR},
+      </if>
+      <if test="agent != null">
+        #{agent,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yfl.pojo.HomeuserExample" resultType="java.lang.Long">
+    select count(*) from homeuser
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update homeuser
+    <set>
+      <if test="record.username != null">
+        USERNAME = #{record.username,jdbcType=CHAR},
+      </if>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.password != null">
+        PASSWORD = #{record.password,jdbcType=CHAR},
+      </if>
+      <if test="record.servername != null">
+        SERVERNAME = #{record.servername,jdbcType=CHAR},
+      </if>
+      <if test="record.email != null">
+        EMAIL = #{record.email,jdbcType=CHAR},
+      </if>
+      <if test="record.wechat != null">
+        WECHAT = #{record.wechat,jdbcType=CHAR},
+      </if>
+      <if test="record.qq != null">
+        QQ = #{record.qq,jdbcType=CHAR},
+      </if>
+      <if test="record.agent != null">
+        AGENT = #{record.agent,jdbcType=CHAR},
+      </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.note != null">
+        NOTE = #{record.note,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update homeuser
+    set USERNAME = #{record.username,jdbcType=CHAR},
+      ID = #{record.id,jdbcType=INTEGER},
+      PASSWORD = #{record.password,jdbcType=CHAR},
+      SERVERNAME = #{record.servername,jdbcType=CHAR},
+      EMAIL = #{record.email,jdbcType=CHAR},
+      WECHAT = #{record.wechat,jdbcType=CHAR},
+      QQ = #{record.qq,jdbcType=CHAR},
+      AGENT = #{record.agent,jdbcType=CHAR},
+      STATUS = #{record.status,jdbcType=CHAR},
+      NOTE = #{record.note,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yfl.pojo.Homeuser">
+    update homeuser
+    <set>
+      <if test="id != null">
+        ID = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=CHAR},
+      </if>
+      <if test="servername != null">
+        SERVERNAME = #{servername,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=CHAR},
+      </if>
+      <if test="wechat != null">
+        WECHAT = #{wechat,jdbcType=CHAR},
+      </if>
+      <if test="qq != null">
+        QQ = #{qq,jdbcType=CHAR},
+      </if>
+      <if test="agent != null">
+        AGENT = #{agent,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=CHAR},
+      </if>
+    </set>
+    where USERNAME = #{username,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yfl.pojo.Homeuser">
+    update homeuser
+    set ID = #{id,jdbcType=INTEGER},
+      PASSWORD = #{password,jdbcType=CHAR},
+      SERVERNAME = #{servername,jdbcType=CHAR},
+      EMAIL = #{email,jdbcType=CHAR},
+      WECHAT = #{wechat,jdbcType=CHAR},
+      QQ = #{qq,jdbcType=CHAR},
+      AGENT = #{agent,jdbcType=CHAR},
+      STATUS = #{status,jdbcType=CHAR},
+      NOTE = #{note,jdbcType=CHAR}
+    where USERNAME = #{username,jdbcType=CHAR}
+  </update>
+</mapper>

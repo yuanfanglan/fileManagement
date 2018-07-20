@@ -57,6 +57,6 @@
 	<!-- 	<table schema="" tableName="servers"></table>
 		<table schema="" tableName="acquire_channel"></table> -->
 		<!-- <table schema="" tableName="advertisement"></table> -->
-		<table schema="" tableName="customer"></table>
+		<table schema="" tableName="homeuser"></table>
 	</context>
 </generatorConfiguration>

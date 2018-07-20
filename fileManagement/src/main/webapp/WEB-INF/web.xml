@@ -21,7 +21,7 @@
   
   <servlet-mapping>
     <servlet-name>springmvc</servlet-name>
-    <url-pattern>*.html</url-pattern>
+    <url-pattern>*.do</url-pattern>
   </servlet-mapping>
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>
@@ -54,7 +54,7 @@
   </session-config> -->
   
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>default.do</welcome-file>
   </welcome-file-list>
   
   <!-- Servlet -->
