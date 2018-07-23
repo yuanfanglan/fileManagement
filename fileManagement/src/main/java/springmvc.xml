@@ -15,23 +15,15 @@
 	<!-- <mvc:annotation-driven /> -->
 	<mvc:annotation-driven />
 	<!-- 扫描该包下的注解 -->
-	<context:component-scan base-package="com.yfl.web.controller"></context:component-scan>
-	
-	<!-- 将 springSwaggerConfig加载到spring容器 -->
-	<!-- <bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />
-	将自定义的swagger配置类加载到spring容器
-	<bean class="com.yfl.config.MySwaggerConfig" />
-	
-	<mvc:resources mapping="/swagger/**" location="/swagger/" /> -->
+	<context:component-scan
+		base-package="com.yfl.web.controller"></context:component-scan>
+
 
 	<!-- 炫染器 视图解析器 前缀+view name(setViewName())+后缀 -->
-	<bean id="jspViewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/jsp/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
+	<!-- <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" 
+		/> <property name="prefix" value="/WEB-INF/jsp/" /> <property name="suffix" 
+		value=".jsp" /> </bean> -->
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -46,4 +38,19 @@
 			<value>utf-8</value>
 		</property>
 	</bean>
+
+
+
+	<!--将静态资源交由默认的servlet处理 -->
+	<mvc:default-servlet-handler />
+	<!--向容器自动注入配置 -->
+	<context:annotation-config />
+
+	<!--重要！将你的SwaggerConfig配置类注入 -->
+	<bean class="com.yfl.config.SwaggerConfig" />
+	<!--重要！配置swagger资源不被拦截 -->
+	<mvc:resources mapping="swagger-ui.html"
+		location="classpath:/META-INF/resources/" />
+	<mvc:resources mapping="/webjars/**"
+		location="classpath:/META-INF/resources/webjars/" />
 </beans> 

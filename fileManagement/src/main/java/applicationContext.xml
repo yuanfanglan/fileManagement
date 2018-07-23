@@ -6,7 +6,7 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
-	<!-- 加载配置文件 -->
+	<!-- 加载配置文件 --> 
 	<context:property-placeholder location="classpath:db.properties" />
 	<!-- <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/> -->
 	<!-- 通过注解进行注入service,dao --> 
@@ -60,6 +60,7 @@
 	<aop:advisor pointcut-ref="services" advice-ref="myAdvice"/>
 	</aop:config>
 
+    
 	<!-- 注解事务 -->
 	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
 </beans>

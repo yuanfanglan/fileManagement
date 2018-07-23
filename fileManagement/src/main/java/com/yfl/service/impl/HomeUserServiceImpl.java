@@ -52,14 +52,15 @@ public class HomeUserServiceImpl implements HomeUserService{
 			Criteria criteria = example.createCriteria();
 			criteria.andUsernameEqualTo(userName);
 			List<Homeuser> list = homeuserMapper.selectByExample(example);
-			if (list!=null) {
+			if (list.get(0)!=null) {
 				if (list.get(0).getPassword().equals(password)) {
 					return new AjaxResult().success(list.get(0));
 				}else {
 					return new AjaxResult().failure("密码错误");
 				}
+			}else {
+				return new AjaxResult().failure("账号不存在");
 			}
-			return null;
 		}
 	}
 

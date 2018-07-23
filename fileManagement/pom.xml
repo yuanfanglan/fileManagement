@@ -13,7 +13,7 @@
 		<!-- 暂时用不到的 -->
 		<junit.version>4.12</junit.version>
 		<httpclient.version>4.3.5</httpclient.version>
-		<jackson.version>2.4.2</jackson.version>
+		<jackson.version>2.7.5</jackson.version>
 		<servlet-api.version>2.5</servlet-api.version>
 		<jsp-api.version>2.0</jsp-api.version>
 		<joda-time.version>2.5</joda-time.version>
@@ -175,6 +175,12 @@
 			<version>${commons-fileupload.version}</version>
 		</dependency>
 		<!-- 导入jackson -->
+		<!--springfox依赖的jar包；如果你的项目中已经集成了无需重复 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
@@ -202,12 +208,26 @@
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
 		</dependency>
-       <!-- RemoteShellExecutor工具类 -->
+		<!-- RemoteShellExecutor工具类 -->
 		<dependency>
 			<groupId>org.jvnet.hudson</groupId>
 			<artifactId>ganymed-ssh2</artifactId>
 			<version>build210-hudson-1</version>
 		</dependency>
+
+		<!-- swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
