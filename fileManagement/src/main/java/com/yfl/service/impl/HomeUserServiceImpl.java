@@ -52,7 +52,7 @@ public class HomeUserServiceImpl implements HomeUserService{
 			Criteria criteria = example.createCriteria();
 			criteria.andUsernameEqualTo(userName);
 			List<Homeuser> list = homeuserMapper.selectByExample(example);
-			if (list.get(0)!=null) {
+			if (list!=null&&list.size()>0) {
 				if (list.get(0).getPassword().equals(password)) {
 					return new AjaxResult().success(list.get(0));
 				}else {
